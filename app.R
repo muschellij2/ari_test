@@ -31,14 +31,13 @@ sound <- replicate(
 graphs <- file.path(temp_dir, paste0("plot", 1:n, ".jpg"))
 video <- file.path(temp_dir, "output.mp4")
 
-res = ari_stitch(graphs, sound, output = video,
-                 video_codec = "libx264")
+
 
 
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
+    
     # Application title
     titlePanel("Ari Test"),
     
@@ -58,10 +57,31 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
-    output$result = renderText({
+    
+    
+    output$result = renderPrint({
+        tfile = tempfile()
+        # zz <- file(tfile, open = "wt")
+        # sink(zz)
+        # sink(zz, type = "message")
+        # x = capture.output({       
+        # res = ari_stitch(graphs, sound, output = video,
+        #                  video_codec = NULL,
+        #                  verbose = TRUE)
+        # }, file = stderr(), type = "message")
+        # sink(type = "message")
+        # sink()
+        # close(zz)
+        # readLines(tfile)
+        
+        # res
+        res = ari_stitch(graphs, sound, output = video,
+                   video_codec = NULL,
+                   # audio_codec = NULL,
+                   ffmpeg_opts = "-strict -2",
+                   verbose = TRUE)
         res
-    })
+        })
     # Downloadable csv of selected dataset ----
     output$downloadData <- downloadHandler(
         filename = function() {
@@ -69,8 +89,8 @@ server <- function(input, output) {
         },
         content = function(file) {
             if (file.exists(video)) {
-            file.copy(video, file, overwrite = TRUE)
-            file
+                file.copy(video, file, overwrite = TRUE)
+                file
             } else {
                 stop("no video")
             }
