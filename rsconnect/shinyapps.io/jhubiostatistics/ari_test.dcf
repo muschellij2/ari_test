@@ -5,8 +5,8 @@ account: jhubiostatistics
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 462911
-bundleId: 1603030
+bundleId: 1603045
 url: https://jhubiostatistics.shinyapps.io/ari_test/
-when: 1537819107.36836
+when: 1537819435.91177
 asMultiple: FALSE
 asStatic: FALSE
