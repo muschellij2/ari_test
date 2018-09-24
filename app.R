@@ -76,12 +76,12 @@ server <- function(input, output) {
         
         # res
         res = ari_stitch(graphs, sound, output = video,
-                   video_codec = NULL,
-                   # audio_codec = NULL,
-                   ffmpeg_opts = "-strict -2",
-                   verbose = TRUE)
+                         video_codec = NULL,
+                         # audio_codec = NULL,
+                         ffmpeg_opts = "-strict -2",
+                         verbose = TRUE)
         res
-        })
+    })
     # Downloadable csv of selected dataset ----
     output$downloadData <- downloadHandler(
         filename = function() {
