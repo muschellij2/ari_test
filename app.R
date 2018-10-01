@@ -75,10 +75,13 @@ server <- function(input, output) {
         # readLines(tfile)
         
         # res
+        audio_codec = "mp3"
         res = ari_stitch(graphs, sound, output = video,
-                         video_codec = NULL,
-                         # audio_codec = NULL,
-                         ffmpeg_opts = "-strict -2",
+                         # video_codec = NULL,
+                         audio_codec = audio_codec,
+                         ffmpeg_opts = ifelse(
+                             audio_codec == "aac", "-strict experimental",
+                             ""),
                          verbose = TRUE)
         res
     })
